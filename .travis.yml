@@ -15,7 +15,7 @@ env:
   # 0 For unit test without coverage 1 for unit test with coverage.
   - COVERAGE="1"
   # Upload covarage to clover.
-  - CLOVER="0"
+  - CLOVER="1"
 
 matrix:
     fast_finish: true
