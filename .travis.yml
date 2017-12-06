@@ -1,0 +1,72 @@
+# Travis CI (MIT License) configuration file
+# @link https://travis-ci.org/
+
+# Use new container based environment
+sudo: false
+
+# Declare project language.
+# @link http://about.travis-ci.org/docs/user/languages/php/
+language: php
+
+env:
+  global:
+  # Name and folder of the the standard to test.
+  - STANDARD="GreynoiseLaravel"
+  # 0 For unit test without coverage 1 for unit test with coverage.
+  - COVERAGE="1"
+  # Upload covarage to clover.
+  - CLOVER="0"
+
+matrix:
+    fast_finish: true
+
+    # Declare versions of PHP to use. Use one decimal max.
+    include:
+        # aliased to a recent 5.4.x version
+        # - php: '5.4'
+        # aliased to a recent 5.5.x version
+        # - php: '5.5'
+        # aliased to a recent 5.6.x version
+        # - php: '5.6'
+        # aliased to a recent 7.x version
+        # - php: '7.0'
+        # aliased to a recent 7.x version
+        - php: '7.1'
+        # aliased to a recent hhvm version
+        # - php: 'hhvm'
+        # php nightly
+        # - php: 'nightly'
+
+    # allow_failures:
+        # - php: 'hhvm'
+        # - php: 'nightly'
+
+before_install:
+  # Remove xdebug.
+  # - phpenv config-rm xdebug.ini
+  # Update composer to latest version
+  # - composer self-update
+  # Install project composer deps in composer.json
+  - composer install
+  # Install composer deps in composer.json.
+  # - composer require squizlabs/php_codesniffer:dev-master
+  # - composer require satooshi/php-coveralls:dev-master
+  - phpenv rehash
+
+script:
+  # Check for PHP syntax errors.
+  - find -L . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+  # - Check files match the PHPCS standard.
+  # - $TRAVIS_BUILD_DIR/vendor/squizlabs/php_codesniffer/bin/phpcs --ignore=*/Tests/* $TRAVIS_BUILD_DIR/$STANDARD/ --standard=$TRAVIS_BUILD_DIR/vendor/squizlabs/php_codesniffer/phpcs.xml.dist
+  - ./vendor/bin/phpcs --ignore=*/Tests/* ./$STANDARD/ --standard=./vendor/squizlabs/php_codesniffer/phpcs.xml.dist
+  # Change the default standard.
+  - ./vendor/bin/phpcs --config-set installed_paths $TRAVIS_BUILD_DIR/$STANDARD
+  # Verify it's installed.
+  - ./vendor/bin/phpcs -i
+  # Run unit tests for the standard with coverage.
+  - if [[ "$COVERAGE" == "0" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
+  # Or Run unit tests for the standard with coverage.
+  - if [[ "$COVERAGE" == "1" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --coverage-clover=$TRAVIS_BUILD_DIR/build/logs/clover.xml --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
+
+after_success:
+  - if [[ "$CLOVER" == "1" ]]; then ./vendor/bin/coveralls -v -x $TRAVIS_BUILD_DIR/build/logs/clover.xml; fi

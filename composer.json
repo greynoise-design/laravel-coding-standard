@@ -1,0 +1,21 @@
+{
+	"name": "greynoise-design/laravel-coding-standard",
+	"description": "Laravel 5 Coding Standard for PHP_CodeSniffer 3.",
+	"version":"0.0.1",
+	"license":"MIT",
+	"authors": [
+        {
+            "name": "Louis Linehan",
+            "email": "louis@greynoise.co.uk",
+            "homepage": "https://github.com/greynoise-design",
+            "role": "Developer"
+        }
+    ],
+	"require": {
+	},
+	"require-dev": {
+		"satooshi/php-coveralls": "^1.0",
+		"squizlabs/php_codesniffer": "^3.1",
+		"phpunit/phpunit": "^6.5"
+	}
+}
