@@ -1,5 +1,13 @@
 # Greynoise Design - Laravel 5 Standard
 
+Version 1.0.0
+
+| Master | Develop |
+| :---: | :---: |
+| [![Build Status](https://travis-ci.org/greynoise-design/laravel-coding-standard.svg?branch=master)](https://travis-ci.org/greynoise-design/laravel-coding-standard) | [![Build Status](https://travis-ci.org/greynoise-design/laravel-coding-standard.svg?branch=develop)](https://travis-ci.org/greynoise-design/laravel-coding-standard) |
+| [![Coverage Status](https://coveralls.io/repos/github/greynoise-design/laravel-coding-standard/badge.svg?branch=master)](https://coveralls.io/github/greynoise-design/laravel-coding-standard?branch=master) | [![Coverage Status](https://coveralls.io/repos/github/greynoise-design/laravel-coding-standard/badge.svg?branch=develop)](https://coveralls.io/github/greynoise-design/laravel-coding-standard?branch=develop) |
+
+
 ## Requirements
 
 [PHP_CodeSniffer 3](https://github.com/squizlabs/PHP_CodeSniffer). (3.1.1 or greater).
@@ -47,3 +55,125 @@ You should now be able to set 'GreynoiseLaravel' as the phpcs standard in the pl
 Set the 'phpcs standard path' and 'phpcbf standard path' in your editor/plugin config to:
 
 '/Path/To/MyProject/vendor/laravel-coding-standard/GreynoiseLaravel/ruleset.xml'
+
+### Command line use
+
+#### Sniffing errors & warnings (reporting).
+
+Single file...
+
+`phpcs /Path/To/MyFile.php --standard='/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml'`
+
+or if globally installed.
+
+`phpcs /Path/To/MyFile.php --standard=GreynoiseLaravel`
+
+Directory (recursive).
+
+`phpcs /Path/To/MyProject --standard='/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml'`
+
+or if globally installed.
+
+`phpcs /Path/To/MyProject --standard=GreynoiseLaravel`
+
+#### Fixing fixable errors.
+
+Single file.
+
+`phpcbf /Path/To/MyFile.php --standard='/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml'`
+
+or if globally installed.
+
+`phpcbf /Path/To/MyFile.php --standard=GreynoiseLaravel`
+
+Directory (recursive).
+
+`phpcbf /Path/To/MyProject --standard='/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml'`
+
+or if globally installed.
+
+`phpcbf /Path/To/MyProject --standard=GreynoiseLaravel`
+
+## Example editor configs
+
+### SublimeText project config
+
+Project > Edit Project
+
+Set it to your preference.
+
+```
+{
+    "SublimeLinter":
+    {
+        "linters":
+        {
+            "phpcs":
+            {
+                "@disable": false,
+                "cmd": "/Path/To/php_codesniffer/bin/phpcs",
+                // Or if installed globally. "cmd": "phpcs",
+                "standard": "/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml",
+                // Exclude folders and files in the linting environment.
+                // (Matches exclude-patterns in ruleser.xml).
+                "excludes":
+                [
+                    "*/config/*",
+                    "*/cache/*",
+                    "*/database/*",
+                    "*/docs/*",
+                    "*/migrations/*",
+                    "*/public/index.php",
+                    "*/vendor/*",
+                    "*/storage/*",
+                    "*/*.blade.php",
+                    "*/*.css",
+                    "*/*.js",
+                    "*/*.xml",
+                    "*/autoload.php"
+                ],
+            }
+        }
+    },
+    "folders":
+    [
+        {
+            "path": "/Path/To/MyProject"
+        }
+    ],
+    "settings":
+    {
+        "phpcs":
+        {
+            "extensions_to_execute":
+            [
+                "php"
+            ],
+            "phpcs_executable_path": "/Path/To/php_codesniffer/bin/phpcs",
+            // Or if installed globally. "phpcbf_executable_path": "phpcs",
+            "phpcs_additional_args":
+            {
+                "--standard": "/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml",
+                // Optional don't show warnings
+                // "-n": ""
+            },
+            "phpcbf_executable_path": "/Path/To/php_codesniffer/bin/phpcbf",
+            // Or if installed globally. "phpcbf_executable_path": "phpcbf",
+            "phpcbf_additional_args":
+            {
+                "--standard": "/Path/To/laravel-coding-standard/GreynoiseLaravel/ruleset.xml",
+                // Optional don't fix warnings (if they're fixable)
+                // "-n": ""
+            },
+            // Execute the sniffer on file save. (Using contextual menu instead)
+            "phpcs_execute_on_save": false,
+            // Show the error list after save. (Using sublime linter instead)
+            "phpcs_show_errors_on_save": false,
+            // Show the errors in the quick panel so you can then goto line. (Gets annoying)
+            "phpcs_show_quick_panel": false,
+            // Turn the debug output on/off.
+            "show_debug": false
+        }
+    }
+}
+```

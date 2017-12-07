@@ -12,10 +12,8 @@ env:
   global:
   # Name and folder of the the standard to test.
   - STANDARD="GreynoiseLaravel"
-  # 0 For unit test without coverage 1 for unit test with coverage.
-  - COVERAGE="1"
-  # Upload covarage to clover.
-  - CLOVER="0"
+  # Upload covarage to coveralls.
+  - COVERALLS="1"
 
 matrix:
     fast_finish: true
@@ -57,16 +55,13 @@ script:
   # Check for PHP syntax errors.
   - find -L . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
   # - Check files match the PHPCS standard.
-  # - $TRAVIS_BUILD_DIR/vendor/squizlabs/php_codesniffer/bin/phpcs --ignore=*/Tests/* $TRAVIS_BUILD_DIR/$STANDARD/ --standard=$TRAVIS_BUILD_DIR/vendor/squizlabs/php_codesniffer/phpcs.xml.dist
   - ./vendor/bin/phpcs --ignore=*/Tests/* ./$STANDARD/ --standard=./vendor/squizlabs/php_codesniffer/phpcs.xml.dist
   # Change the default standard.
   - ./vendor/bin/phpcs --config-set installed_paths $TRAVIS_BUILD_DIR/$STANDARD
   # Verify it's installed.
   - ./vendor/bin/phpcs -i
-  # Run unit tests for the standard with coverage.
-  - if [[ "$COVERAGE" == "0" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
-  # Or Run unit tests for the standard with coverage.
-  - if [[ "$COVERAGE" == "1" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --coverage-clover=$TRAVIS_BUILD_DIR/build/logs/clover.xml --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
+  # Run unit tests for the standard.
+  - ./vendor/bin/phpunit --debug --filter $STANDARD
 
 after_success:
-  - if [[ "$CLOVER" == "1" ]]; then ./vendor/bin/coveralls -v -x $TRAVIS_BUILD_DIR/build/logs/clover.xml; fi
+  - if [[ "$COVERALLS" == "1" ]]; then ./vendor/bin/coveralls -v -x ./build/logs/clover.xml; fi
