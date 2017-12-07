@@ -1,10 +1,6 @@
 # Greynoise Design - Laravel 5 Standard
 
-<<<<<<< HEAD
 Version 1.0.1
-=======
-Version 1.0.0
->>>>>>> fa87ceb84ae2fc69a8f7f01a3d371aa96428df46
 
 | Master | Develop |
 | :---: | :---: |
