@@ -117,21 +117,21 @@ Set it to your preference.
                 // Exclude folders and files in the linting environment.
                 // (Matches exclude-patterns in ruleser.xml).
                 "excludes":
-				[
-					"*/config/*",
-					"*/cache/*",
-					"*/database/*",
-					"*/docs/*",
-					"*/migrations/*",
-					"*/public/index.php",
-					"*/vendor/*",
-					"*/storage/*",
-					"*/*.blade.php",
-					"*/*.css",
-					"*/*.js",
-					"*/*.xml",
-					"*/autoload.php"
-				],
+                [
+                    "*/config/*",
+                    "*/cache/*",
+                    "*/database/*",
+                    "*/docs/*",
+                    "*/migrations/*",
+                    "*/public/index.php",
+                    "*/vendor/*",
+                    "*/storage/*",
+                    "*/*.blade.php",
+                    "*/*.css",
+                    "*/*.js",
+                    "*/*.xml",
+                    "*/autoload.php"
+                ],
             }
         }
     },
