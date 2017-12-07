@@ -66,7 +66,7 @@ script:
   # Run unit tests for the standard with coverage.
   - if [[ "$COVERAGE" == "0" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
   # Or Run unit tests for the standard with coverage.
-  - if [[ "$COVERAGE" == "1" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --coverage-clover=$TRAVIS_BUILD_DIR/build/logs/clover.xml --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
+  - if [[ "$COVERAGE" == "1" ]]; then ./vendor/bin/phpunit --bootstrap=./vendor/squizlabs/php_codesniffer/tests/bootstrap.php --debug --coverage-clover=$TRAVIS_BUILD_DIR/build/logs/clover.xml --whitelist $STANDARD --filter $STANDARD ./vendor/squizlabs/php_codesniffer/tests/AllTests.php; fi
 
 after_success:
   - if [[ "$CLOVER" == "1" ]]; then ./vendor/bin/coveralls -v -x $TRAVIS_BUILD_DIR/build/logs/clover.xml; fi
