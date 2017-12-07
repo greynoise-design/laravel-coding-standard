@@ -61,7 +61,7 @@ script:
   # Verify it's installed.
   - ./vendor/bin/phpcs -i
   # Run unit tests for the standard.
-  - ./vendor/bin/phpunit --debug --filter ./$STANDARD
+  - ./vendor/bin/phpunit --debug --filter $STANDARD
 
 after_success:
   - if [[ "$CLOVER" == "1" ]]; then ./vendor/bin/coveralls -v -x $TRAVIS_BUILD_DIR/tmp/logs/clover.xml; fi
