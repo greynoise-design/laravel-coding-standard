@@ -1,0 +1,15 @@
+<phpunit debug="true" bootstrap="./vendor/squizlabs/php_codesniffer/tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="Test Suite">
+            <file>./vendor/squizlabs/php_codesniffer/tests/AllTests.php</file>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <log type="coverage-clover" target="./build/logs/clover.xml"/>
+    </logging>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./GreynoiseLaravel</directory>
+        </whitelist>
+    </filter>
+</phpunit>
