@@ -1,7 +1,11 @@
 {
 	"name": "greynoise-design/laravel-coding-standard",
 	"description": "Laravel 5 Coding Standard for PHP_CodeSniffer 3.",
+<<<<<<< HEAD
 	"version":"1.0.1",
+=======
+	"version":"1.0.0",
+>>>>>>> fa87ceb84ae2fc69a8f7f01a3d371aa96428df46
 	"license":"MIT",
 	"authors": [
         {
