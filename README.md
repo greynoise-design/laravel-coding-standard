@@ -1,5 +1,13 @@
 # Greynoise Design - Laravel 5 Standard
 
+Version 0.0.0
+
+| Master | Develop |
+| :---: | :---: |
+| [![Build Status](https://travis-ci.org/greynoise-design/laravel-coding-standard.svg?branch=master)](https://travis-ci.org/greynoise-design/laravel-coding-standard) | [![Build Status](https://travis-ci.org/greynoise-design/laravel-coding-standard.svg?branch=develop)](https://travis-ci.org/greynoise-design/laravel-coding-standard) |
+| [![Coverage Status](https://coveralls.io/repos/github/greynoise-design/laravel-coding-standard/badge.svg?branch=master)](https://coveralls.io/github/greynoise-design/laravel-coding-standard?branch=master) | [![Coverage Status](https://coveralls.io/repos/github/greynoise-design/laravel-coding-standard/badge.svg?branch=develop)](https://coveralls.io/github/greynoise-design/laravel-coding-standard?branch=develop) |
+
+
 ## Requirements
 
 [PHP_CodeSniffer 3](https://github.com/squizlabs/PHP_CodeSniffer). (3.1.1 or greater).
