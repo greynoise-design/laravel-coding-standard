@@ -15,10 +15,8 @@
 	<exclude-pattern>*/*.js</exclude-pattern>
 	<exclude-pattern>*/*.xml</exclude-pattern>
 	<exclude-pattern>*/autoload.php</exclude-pattern>
-	
 	<!-- Include the whole PSR-2 standard -->
 	<rule ref="PSR2"/>
-
 	<!--
 	Files MUST have a doc block comment.
 	Checks file comment tag format and order.
@@ -74,12 +72,10 @@
 	Doc block comment format and spacing.
 	-->
 	<rule ref="Generic.Commenting.DocComment"/>
-
 	<!--
 	Warning for todo items.
 	-->
 	<rule ref="Generic.Commenting.Todo"/>
-
 	<!--
 	Checks array bracket spaces.
 	-->
@@ -93,9 +89,13 @@
 	<!--
 	Checks statments on subsequent lines are aligned. (line up the "=").
 	-->
-	<rule ref="Generic.Formatting.MultipleStatementAlignment">
+	<!-- <rule ref="Generic.Formatting.MultipleStatementAlignment">
 		<properties>
 			<property name="error" value="true"/>
 		</properties>
-	</rule>
+	</rule> -->
+	<!--
+	Checks tabs are not used in alignment.
+	-->
+	<rule ref="GreynoiseLaravel.WhiteSpace.DisallowTabsInAlignment"/>
 </ruleset>
