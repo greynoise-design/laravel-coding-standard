@@ -1,4 +1,4 @@
 composer.phar
 /vendor/
 /composer.lock
-/tmp
+/build

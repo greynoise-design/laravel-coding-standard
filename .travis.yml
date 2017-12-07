@@ -12,8 +12,8 @@ env:
   global:
   # Name and folder of the the standard to test.
   - STANDARD="GreynoiseLaravel"
-  # Upload covarage to clover.
-  - CLOVER="1"
+  # Upload covarage to coveralls.
+  - COVERALLS="1"
 
 matrix:
     fast_finish: true
@@ -64,4 +64,4 @@ script:
   - ./vendor/bin/phpunit --debug --filter $STANDARD
 
 after_success:
-  - if [[ "$CLOVER" == "1" ]]; then ./vendor/bin/coveralls -v -x $TRAVIS_BUILD_DIR/tmp/logs/clover.xml; fi
+  - if [[ "$COVERALLS" == "1" ]]; then ./vendor/bin/coveralls -v -x ./build/logs/clover.xml; fi
