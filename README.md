@@ -1,6 +1,6 @@
 # Greynoise Design - Laravel 5 Standard
 
-Version 0.0.0
+Version 1.0.0
 
 | Master | Develop |
 | :---: | :---: |
