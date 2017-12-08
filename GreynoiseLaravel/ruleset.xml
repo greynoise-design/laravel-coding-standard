@@ -2,6 +2,9 @@
 <ruleset name="GreynoiseLaravel">
 	<description>Greynoise Laravel 5 standard for PHP_CodeSniffer.</description>
 	<arg name="tab-width" value="4"/>
+	<!--
+	Exclude files and folders that we dont want to sniff.
+	-->
 	<exclude-pattern>*/config/*</exclude-pattern>
 	<exclude-pattern>*/cache/*</exclude-pattern>
 	<exclude-pattern>*/database/*</exclude-pattern>
@@ -15,12 +18,14 @@
 	<exclude-pattern>*/*.js</exclude-pattern>
 	<exclude-pattern>*/*.xml</exclude-pattern>
 	<exclude-pattern>*/autoload.php</exclude-pattern>
-	<exclude-pattern>*/app/Middleware/*</exclude-pattern>
-	<exclude-pattern>*/app/Console/Kernel.php</exclude-pattern>
-	<exclude-pattern>*/app/Exceptions/Handler.php</exclude-pattern>
-	<exclude-pattern>*/app/Http/Kernel.php</exclude-pattern>
-	<exclude-pattern>*/app/Providers/*</exclude-pattern>
-	<!-- Include the whole PSR-2 standard -->
+	<exclude-pattern>*/Middleware/*</exclude-pattern>
+	<exclude-pattern>*/Console/Kernel.php</exclude-pattern>
+	<exclude-pattern>*/Exceptions/Handler.php</exclude-pattern>
+	<exclude-pattern>*/Http/Kernel.php</exclude-pattern>
+	<exclude-pattern>*/Providers/*</exclude-pattern>
+	<!--
+	Include the whole PSR-2 standard
+	-->
 	<rule ref="PSR2"/>
 	<!--
 	Files MUST have a doc block comment.
