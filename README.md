@@ -130,7 +130,12 @@ Set it to your preference.
                     "*/*.css",
                     "*/*.js",
                     "*/*.xml",
-                    "*/autoload.php"
+                    "*/autoload.php",
+                    "*/Middleware/*",
+                    "*/Console/Kernel.php",
+                    "*/Exceptions/Handler.php",
+                    "*/Http/Kernel.php",
+                    "*/Providers/*"
                 ],
             }
         }
