@@ -68,4 +68,4 @@ script:
   - ./vendor/bin/phpunit --filter $STANDARD
 
 after_success:
-  - if [[ "$COVERALLS" == "1" ]]; then ./vendor/bin/coveralls -v -x ./build/logs/clover.xml; fi
+  - if [[ "$COVERALLS" == "1" ]]; then ./vendor/bin/coveralls -v -x ./build/logs/coverage/clover/clover.xml; fi
