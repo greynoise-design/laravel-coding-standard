@@ -1,11 +1,9 @@
-# Travis CI (MIT License) configuration file
-# @link https://travis-ci.org/
+# Travis CI
 
 # Use new container based environment
 sudo: false
 
 # Declare project language.
-# @link http://about.travis-ci.org/docs/user/languages/php/
 language: php
 
 env:
@@ -40,16 +38,18 @@ matrix:
         # - php: 'nightly'
 
 before_install:
-  # Remove xdebug.
+  # Remove xdebug. Needed for coverage.
   # - phpenv config-rm xdebug.ini
-  # Update composer to latest version
-  # - composer self-update
+
+install:
+  # Update composer to latest version.
+  - composer self-update
   # Install project composer deps in composer.json
-  - composer install
-  # Install composer deps in composer.json.
-  # - composer require squizlabs/php_codesniffer:dev-master
-  # - composer require satooshi/php-coveralls:dev-master
-  - phpenv rehash
+  - composer install --no-interaction
+
+before_script:
+  # Rehash the php environment if testing on several PHP versions.
+  # - phpenv rehash
 
 script:
   # Check for PHP syntax errors.
@@ -64,4 +64,4 @@ script:
   - ./vendor/bin/phpunit --debug --filter $STANDARD
 
 after_success:
-  - if [[ "$COVERALLS" == "1" ]]; then ./vendor/bin/coveralls -v -x ./build/logs/clover.xml; fi
+  - if [[ "$COVERALLS" == "1" ]]; then ./vendor/bin/coveralls -v -x ./build/logs/coverage/clover/clover.xml; fi

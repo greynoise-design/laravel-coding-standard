@@ -15,11 +15,11 @@
 	<exclude-pattern>*/*.js</exclude-pattern>
 	<exclude-pattern>*/*.xml</exclude-pattern>
 	<exclude-pattern>*/autoload.php</exclude-pattern>
-	<exclude-pattern>*/app/Middleware/*</exclude-pattern>
-	<exclude-pattern>*/app/Console/Kernel.php</exclude-pattern>
-	<exclude-pattern>*/app/Exceptions/Handler.php</exclude-pattern>
-	<exclude-pattern>*/app/Http/Kernel.php</exclude-pattern>
-	<exclude-pattern>*/app/Providers/*</exclude-pattern>
+	<exclude-pattern>*/Middleware/*</exclude-pattern>
+	<exclude-pattern>*/Console/Kernel.php</exclude-pattern>
+	<exclude-pattern>*/Exceptions/Handler.php</exclude-pattern>
+	<exclude-pattern>*/Http/Kernel.php</exclude-pattern>
+	<exclude-pattern>*/Providers/*</exclude-pattern>
 	<!-- Include the whole PSR-2 standard -->
 	<rule ref="PSR2"/>
 	<!--

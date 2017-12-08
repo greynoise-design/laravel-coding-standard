@@ -1,6 +1,6 @@
 # Greynoise Design - Laravel 5 Standard
 
-Version 1.0.1
+Version 1.0.2
 
 | Master | Develop |
 | :---: | :---: |
@@ -130,7 +130,12 @@ Set it to your preference.
                     "*/*.css",
                     "*/*.js",
                     "*/*.xml",
-                    "*/autoload.php"
+                    "*/autoload.php",
+                    "*/Middleware/*",
+                    "*/Console/Kernel.php",
+                    "*/Exceptions/Handler.php",
+                    "*/Http/Kernel.php",
+                    "*/Providers/*"
                 ],
             }
         }
