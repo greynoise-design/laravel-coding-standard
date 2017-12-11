@@ -1,4 +1,4 @@
-<phpunit debug="true" bootstrap="./vendor/squizlabs/php_codesniffer/tests/bootstrap.php">
+<phpunit beStrictAboutTestsThatDoNotTestAnything="false" bootstrap="./vendor/squizlabs/php_codesniffer/tests/bootstrap.php">
     <testsuites>
         <testsuite name="Test Suite">
             <file>./vendor/squizlabs/php_codesniffer/tests/AllTests.php</file>
