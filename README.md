@@ -204,8 +204,6 @@ stages:
 composer_install:
   stage: install
   image: composer:latest
-  tags:
-    - infrastructure
   cache:
     key: ${CI_COMMIT_REF_SLUG}-composer
     paths:
@@ -222,8 +220,6 @@ composer_install:
 phpcs:
   stage: test
   image: greynoise-design/laravel-coding-standard:latest
-  tags:
-    - infrastructure
   script:
     - phpcs-laravel -p .
 ```
