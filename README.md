@@ -194,7 +194,7 @@ Set it to your preference.
 ```
 ## Example how to use for CI services
 
-### Gitlab CI
+### .gitlab-ci.yml
 
 ```yaml
 stages:
@@ -228,7 +228,7 @@ phpcs:
     - phpcs-laravel -p .
 ```
 
-### Travis
+### .travis.yml
 
 ```yaml
 sudo: required
