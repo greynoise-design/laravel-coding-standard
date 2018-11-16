@@ -6,7 +6,7 @@ Version 1.0.2
 | :---: | :---: |
 | [![Build Status](https://travis-ci.org/greynoise-design/laravel-coding-standard.svg?branch=master)](https://travis-ci.org/greynoise-design/laravel-coding-standard) | [![Build Status](https://travis-ci.org/greynoise-design/laravel-coding-standard.svg?branch=develop)](https://travis-ci.org/greynoise-design/laravel-coding-standard) |
 | [![Coverage Status](https://coveralls.io/repos/github/greynoise-design/laravel-coding-standard/badge.svg?branch=master)](https://coveralls.io/github/greynoise-design/laravel-coding-standard?branch=master) | [![Coverage Status](https://coveralls.io/repos/github/greynoise-design/laravel-coding-standard/badge.svg?branch=develop)](https://coveralls.io/github/greynoise-design/laravel-coding-standard?branch=develop) |
-
+| [![Docker Pulls](https://img.shields.io/docker/pulls/greynoise-design/laravel-coding-standard.svg)](https://hub.docker.com/r/greynoise-design/laravel-coding-standard/) |  |
 
 ## Requirements
 
@@ -93,6 +93,16 @@ Directory (recursive).
 or if globally installed.
 
 `phpcbf /Path/To/MyProject --standard=GreynoiseLaravel`
+
+#### Using from docker container
+
+If you don't use any CI service, you probably don't need to know how to use this library with docker.
+
+To run syntax test from current folder you need to execute such command:
+`docker run -d greynoise-design/laravel-coding-standard -v ./:/app /bin/sh -c "cd /app; phpcs-laravel -p ."`
+
+To fix syntax for current folder you need to execute similar command:
+`docker run -d greynoise-design/laravel-coding-standard -v ./:/app /bin/sh -c "cd /app; phpcbf-laravel -p ."`
 
 ## Example editor configs
 
@@ -181,4 +191,52 @@ Set it to your preference.
         }
     }
 }
+```
+## Example how to use for CI services
+
+### .gitlab-ci.yml
+
+```yaml
+stages:
+  - install
+  - test
+
+composer_install:
+  stage: install
+  image: composer:latest
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-composer
+    paths:
+      - vendor/
+  artifacts:
+    name: ${CI_COMMIT_SHA}-php
+    expire_in: 1 hour
+    paths:
+      - vendor/
+      - bootstrap/cache/
+  script:
+    - composer install --no-ansi --ignore-platform-reqs --no-interaction --no-progress --optimize-autoloader --no-dev
+    
+phpcs:
+  stage: test
+  image: greynoise-design/laravel-coding-standard:latest
+  script:
+    - phpcs-laravel -p .
+```
+
+### .travis.yml
+
+```yaml
+sudo: required
+
+language: php
+
+services:
+  - docker
+
+before_install:
+  - docker pull greynoise-design/laravel-coding-standard
+
+script:
+  - docker run -d greynoise-design/laravel-coding-standard -v ./:/app /bin/sh -c "cd /app; phpcs-laravel -p ."
 ```
